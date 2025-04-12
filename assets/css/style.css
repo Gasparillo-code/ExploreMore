@@ -1,472 +1,205 @@
-/* ===== Keyframe Animations ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-@keyframes fadeInUp {
-  from {
+@keyframes fade-in-up {
+  0% {
     opacity: 0;
     transform: translateY(30px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
-/* ===== Base Styles ===== */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+section {
+  animation: fade-in-up 1s ease-out forwards;
+  opacity: 0;
+}
+section > * {
+  animation: fade-in-up 1s ease-out forwards;
+  animation-delay: 0.2s;
 }
 
-/* ===== Sticky Navbar ===== */
-header {
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+.card .card-title {
+  transition: color 0.3s;
+}
+.card .card-title:hover {
+  color: #006D77;
+}
+
+.destination img {
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+.destination img:hover {
+  transform: scale(1.05);
+}
+
+.hero img {
+  animation: hero-zoom 8s ease-in-out infinite alternate;
+}
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+.hero .hero-content {
+  animation: fade-in-up 1s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.delay-1 {
+  animation-delay: 0.3s;
+}
+
+.delay-2 {
+  animation-delay: 0.6s;
+}
+
+.delay-3 {
+  animation-delay: 0.9s;
+}
+
+.navbar-nav .nav-link {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
   background-color: #006D77;
-  color: white;
-  padding: 0.5rem 1rem;
-  position: sticky;
+  bottom: 0;
+  left: 50%;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover:before,
+.navbar-nav .nav-link.active:before {
+  width: 100%;
+  left: 0;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #006D77;
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: bold;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+.hero img {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  animation: slideDown 0.5s ease-out;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-container img {
-  width: 50px;
-  height: 50px;
-  border-radius: 200%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  margin-left: 20px;
-  background-color: transparent;
+  z-index: -1;
 }
-
-/* ExploreMore Title */
-header h1 {
-  font-size: 1.5rem;
-  margin: 0;
-  animation: fadeIn 1s ease-out;
-}
-
-/* Navigation Menu */
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 30px;
-  align-items: center;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px 15px;
-  position: relative;
-  white-space: nowrap;
-  animation: fadeIn 1s ease-in-out;
-}
-
-nav ul li:last-child {
-  margin-right: 50px;
-}
-
-/* Hover Effect for Navigation Links */
-nav ul li a:hover {
-  color: #00cadd;
-  transform: scale(1.1);
-}
-
-/* ===== Full-Screen Background Image ===== */
-.hero {
-  background: url("assets/imgs/Mountain_1.jpg") no-repeat center center;
-  background-size: cover;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-  animation: fadeInUp 1.2s ease-out;
-}
-
-/* ===== Top Destinations Section ===== */
-.top-destinations {
-  padding: 50px 20px;
-  animation: fadeInUp 1s ease-in-out;
-}
-
-.destinations {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-/* ===== Destination Images ===== */
-.destination {
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
-  animation: fadeIn 1s ease-in-out;
-}
-
-/* Hover Effect for Images */
-.destination img {
-  width: 300px;
-  height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s;
-}
-
-.destination img:hover {
-  transform: scale(1.1);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* ===== Buttons & Underline Animation ===== */
-button,
-nav ul li a {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  position: relative;
-  cursor: pointer;
-  text-decoration: none;
-  padding: 0px 0px;
-}
-button::after,
-nav ul li a::after {
-  content: "";
-  display: block;
-  height: 2px;
-  width: 0;
-  background: white;
-  transition: width 0.3s ease-in-out;
+.hero .hero-content {
   position: absolute;
+  top: 50%;
   left: 50%;
-  bottom: -5px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+.hero .hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.hero .hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero .hero-content .btn {
+  position: relative;
+  font-size: 1.25rem;
+  padding: 10px 30px;
+  border-radius: 25px;
+  text-decoration: none;
+}
+.hero .hero-content .btn:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 5px;
+  background-color: #006D77;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.hero .hero-content .btn:hover {
+  background-color: #fff;
+}
+.hero .hero-content .btn:hover:before {
+  width: 80%;
+  left: 50%;
   transform: translateX(-50%);
 }
-button:hover::after,
-nav ul li a:hover::after {
+
+.animated-underline {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.animated-underline::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+.animated-underline:hover::before {
   width: 100%;
 }
 
-/* ===== Form Inputs (Transparent Fields) ===== */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 50%;
-  margin: auto;
-  animation: fadeIn 1s ease-in-out;
-  /* Hover Effect for Form Inputs */
-}
-form input, form textarea {
-  border: none;
-  border-bottom: 2px solid #006D77;
-  background: transparent;
-  padding: 10px;
-  outline: none;
-  color: #006D77;
-  transition: border-color 0.3s, background 0.3s;
-}
-form input:hover, form textarea:hover {
-  border-color: #00cadd;
-  background: rgba(0, 109, 119, 0.1);
-}
-form button {
-  margin-top: 10px;
+.logo-container .logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Centered Section Styling */
-/* General Section Styling */
-.history-company, .mission-vision, .team, .travel-packages {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  max-width: 80%;
-  margin: 40px auto;
-}
-
-/* Individual Section Cards */
-.history, .company, .mission, .vision, .team-members, .package {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 800px;
-  text-align: center; /* Centers all text */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Hover Effect */
-.history:hover, .company:hover, .mission:hover, .vision:hover, .team-members:hover, .package:hover {
-  transform: scale(1.03);
-}
-
-/* Centering the History Section */
-.history, .overview {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: justify;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 800px;
-  text-align: justify; /* Centers the text */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-  margin: 0 auto; /* Centers the section horizontally */
-}
-
-.overview {
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-.overview:hover {
-  transform: scale(1.03);
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Headings Styling */
-.history h2, .overview h2, .mission h2, .vision h2, .team-members h2, .travel-packages h2 {
-  color: #006D77; /* Ocean Blue */
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-/* Company Overview & Mission Vision Styling */
-.company-overview h2, .mission-vision h2 {
-  color: #006D77; /* Ocean Blue */
-  text-align: justify;
-}
-
-.company-overview p, .mission-vision p {
-  color: #006D77; /* Ocean Blue */
-  text-align: justify;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-/* Paragraph Styling */
-.history p, .overview p, .mission p, .vision p, .team-members p, .package p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #333;
-}
-
-/* Team Section */
-.team-members {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.member {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 600px;
-  text-align: justify;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Travel Packages */
-.packages {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.package {
-  width: 100%;
-  max-width: 800px;
-}
-
-/* Navbar */
-.navbar {
-  background-color: #006D77;
-  padding: 10px 20px;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-}
-
-.navbar a:hover {
-  text-decoration: underline;
-}
-
-/* Footer */
-.footer {
-  background-color: #006D77;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 40px;
-}
-
-/* ===== Contact Section Styling ===== */
-#body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-/* ===== Navbar Styling ===== */
-header {
-  background-color: #007B83;
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header .logo-container {
-  display: flex;
-  align-items: center;
-}
-
-header img {
-  width: 50px;
-  margin-right: 10px;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-nav ul li {
-  margin: 0 10px;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav ul li a.active, nav ul li a:hover {
-  border-bottom: 2px solid white;
-}
-
-/* ===== Contact Section ===== */
-#contact {
-  text-align: center;
-  padding: 50px 20px;
-  background: #f9f9f9;
-}
-
-#contact h2 {
-  color: #007B83;
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 500px;
+.team-img {
+  height: 50vh;
+  width: 50vh;
   margin: 0 auto;
-}
-
-.contact-form input, .contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border: 2px solid #007B83;
-  border-radius: 5px;
-  background: #fff;
-  color: #333;
-}
-
-.contact-form button {
-  background: #007B83;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.contact-form button:hover {
-  background: #005f63;
-}
-
-/* ===== Map Container ===== */
-.map-container {
-  margin: 20px auto;
-  max-width: 600px;
-}
-
-/* ===== Social Media Links ===== */
-.social-links {
-  margin-top: 20px;
-}
-
-.social-links a {
-  margin: 0 10px;
-  color: #007B83;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.social-links a:hover {
-  color: #005f63;
-}
-
-/* ===== Footer ===== */
-footer {
-  background: #007B83;
-  color: white;
+  display: block;
   text-align: center;
-  padding: 15px 0;
-  margin-top: 20px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensures it stays above other content */
 }/*# sourceMappingURL=style.css.map */
